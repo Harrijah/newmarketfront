@@ -1,0 +1,32 @@
+.bocontainer{
+    @include stdparams;
+    height: 100%;
+
+    .pplban{
+        @include principalban;
+        background: url('../../../public/image/pdc.jpg') top/cover;
+    }
+    .secondban{
+        @include stdparams;
+        display: flex;
+        .column01{
+            @include lateralleftcol;
+            .block01{
+                button{
+                    @include lateralbobtn;
+                }
+            }
+
+        }
+        .column02{
+            @include pplcol;
+            .contentcontainer{
+                @include stdparams;
+                h1{
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
