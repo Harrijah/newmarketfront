@@ -5,7 +5,7 @@ export const ADD_MARQUE = 'ADD_MARQUE';
 
 export const getMarque = () => {
     return (dispatch) => {
-        return axios.get('http://localhost:8080/getmarque').then((res) => {
+        return axios.get('https://web.axel.mg/getmarque').then((res) => {
             dispatch({ type: GET_MARQUE, payload: res.data });
         });
     }
@@ -13,7 +13,7 @@ export const getMarque = () => {
 
 export const addMarque = (data) => {
     return (dispatch) => {
-        return axios.post('http://localhost:8080/addmarque', data).then((res) => {
+        return axios.post('https://web.axel.mg/addmarque', data).then((res) => {
             dispatch({type: ADD_MARQUE, payload: res.data});
          });
     }
