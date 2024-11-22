@@ -146,7 +146,8 @@ const Homepub = () => {
                 setTodisplay(hlproduct);
                 break;
             case 3:
-                setTodisplay(<a href='http://localhost:3000/boutique/19'><img src={imagepub01} alt="" /></a>);
+                // setTodisplay(<a href='http://localhost:3000/boutique/19'><img src={imagepub01} alt="" /></a>);
+                setTodisplay(<a href='https://trade.axel.mg/boutique/19'><img src={imagepub01} alt="" /></a>);
                 break;
             case 4:
                 setTodisplay(texttoshow02);

@@ -16,7 +16,7 @@ export const connectuseraction = (data) => {
 
 export const createUser = (data) => {
     return (dispatch) => {
-        return axios.post('http://localhost:8080/createaccount', data).then(() => {
+        return axios.post('https://web.axel.mg/createaccount', data).then(() => {
             dispatch({ type: CREATE_USER, payload: data });
         });
     }
@@ -24,7 +24,7 @@ export const createUser = (data) => {
 
 export const updateUser = (data) => {
     return (dispatch) => {
-        return axios.put('http://localhost:8080/updateinfo', data).then(() => {
+        return axios.put('https://web.axel.mg/updateinfo', data).then(() => {
             dispatch({ type: UPDATE_USER, payload: data });
         });
     }
@@ -33,7 +33,7 @@ export const updateUser = (data) => {
 
 export const connectUser = (data) => {
     return (dispatch) => {
-        return axios.post('http://localhost:8080/connectme', data).then((res) => {
+        return axios.post('https://web.axel.mg/connectme', data).then((res) => {
             dispatch({ type: CONNEXION_STATUS, payload: res.data });
         });
     }
@@ -41,7 +41,7 @@ export const connectUser = (data) => {
 
 export const disconnectUser = () => {
     return (dispatch) => {
-        return axios.get('http://localhost:8080/disconnect').then((res) => {
+        return axios.get('https://web.axel.mg/disconnect').then((res) => {
             dispatch({type: DISCONNECT_USER, payload: res.data})
         })
     }

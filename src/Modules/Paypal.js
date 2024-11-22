@@ -6,7 +6,8 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function Paypal({listofproducts}) {
     function createOrder() {
-        return fetch("http://localhost:3000/create-paypal-order", {
+        // return fetch("http://localhost:3000/create-paypal-order", {
+        return fetch("https://trade.axel.mg/create-paypal-order", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +26,8 @@ export default function Paypal({listofproducts}) {
             .then((order) => order.id);
     }
     function onApprove(data) {
-          return fetch("http://localhost:3000/commandes/capture-paypal-order", {
+        //   return fetch("http://localhost:3000/commandes/capture-paypal-order", {
+          return fetch("https://trade.axel.mg/commandes/capture-paypal-order", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

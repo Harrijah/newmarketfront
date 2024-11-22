@@ -31,7 +31,7 @@ export const addProduct = (data) => {
         if (data.image06) formData.append('image06', data.image06);
 
         // Utilisez axios pour envoyer la requête
-        axios.post('http://localhost:8080/addproduct', formData, {headers: {'Content-Type': 'multipart/form-data'}
+        axios.post('https://web.axel.mg/addproduct', formData, {headers: {'Content-Type': 'multipart/form-data'}
         }).then(response => {
             dispatch({type: ADD_PRODUCT, payload: response.data})
         }).catch(error => {
@@ -67,7 +67,7 @@ export const modifyProduct = (data) => {
         if (data.image06) formData.append('image06', data.image06);
 
         // Utilisez POST pour simuler un PUT
-        axios.post('http://localhost:8080/modifyProduct', formData, {
+        axios.post('https://web.axel.mg/modifyProduct', formData, {
             headers: {'Content-Type': 'multipart/form-data'}
         }).then(response => {
             dispatch({type: MOD_PRODUCT, payload: response.data})
@@ -81,7 +81,7 @@ export const modifyProduct = (data) => {
 
 export const getProduct = () => {
     return (dispatch) => {        
-        return axios.get('http://localhost:8080/getproduct').then((res) => {
+        return axios.get('https://web.axel.mg/getproduct').then((res) => {
              dispatch({ type: GET_PRODUCT, payload: res.data });
         });
     }
@@ -89,7 +89,7 @@ export const getProduct = () => {
 
 export const getOneproduct = (id) => {
     return (dispatch) => {
-        return axios.get(`http://localhost:8080/getoneproduct/${id}`).then((res) => {
+        return axios.get(`https://web.axel.mg/getoneproduct/${id}`).then((res) => {
             dispatch({ type: GET_ONEPRODUCT, payload: res.data });
         });
     }
@@ -97,7 +97,7 @@ export const getOneproduct = (id) => {
 
 export const deleteProduct = (id) => {
     return (dispatch) => {
-        return axios.delete(`http://localhost:8080/deleteproduct/${id}`).then((res) => {
+        return axios.delete(`https://web.axel.mg/deleteproduct/${id}`).then((res) => {
             dispatch({type: DEL_PRODUCT, payload: res.data})
         })
     }

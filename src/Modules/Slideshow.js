@@ -68,7 +68,7 @@ const Slideshow = ({ listederayons, allproductslist, magasins, enavant }) => {
             <img
               src={
                 !isEmpty(allproductslist)
-                  ? "http://localhost:8080/uploads/" + product.image01
+                  ? "https://web.axel.mg/uploads/" + product.image01
                   : ""
               }
               alt="Aucune image trouvée"
@@ -99,7 +99,7 @@ const Slideshow = ({ listederayons, allproductslist, magasins, enavant }) => {
         !isEmpty(filteredlist) &&
         Array.from(filteredlist).map((product, index) => (
           <div key={product.id} className={index != sliderindex ? "slidebox" : "showme"} >
-            <img src={  !isEmpty(allproductslist) ? "http://localhost:8080/uploads/" + product.image01 : "" } alt="" />
+            <img src={  !isEmpty(allproductslist) ? "https://web.axel.mg/uploads/" + product.image01 : "" } alt="" />
           </div>
         ));
       setSlidercontent(templist);
@@ -118,7 +118,7 @@ const Slideshow = ({ listederayons, allproductslist, magasins, enavant }) => {
                       (product.position == 2 && droite)
                   )
                 }}>
-                <img onClick={(e) => showaproduct(e, product.id)} src={!isEmpty(allproductslist) ? "http://localhost:8080/uploads/" + product.image01 : ""} alt="" />
+                <img onClick={(e) => showaproduct(e, product.id)} src={!isEmpty(allproductslist) ? "https://web.axel.mg/uploads/" + product.image01 : ""} alt="" />
                 <button className="slidebtn01" onClick={(e) => showaproduct(e, product.id)} > {product.nomproduit} </button>
                 <button className="slidebtn02" onClick={() => openstore(product.storeid)} > {searchinfo(magasins, product.storeid, "nommagasin")}</button>
             </div>

@@ -34,7 +34,7 @@ export const removeformcart = (id) => {
 
 export const addCommand = (data) => {
     return (dispatch) => {
-        return axios.post('http://localhost:8080/addcommand', data).then((res) => (
+        return axios.post('https://web.axel.mg/addcommand', data).then((res) => (
             dispatch({ type: ADD_COMMAND, payload: res.data })
         ));
     }
@@ -42,7 +42,7 @@ export const addCommand = (data) => {
 
 export const getCommand = (id) => {
     return (dispatch) => {
-        return axios.get('http://localhost:8080/getcommand/' + id).then((res) => (
+        return axios.get('https://web.axel.mg/getcommand/' + id).then((res) => (
             dispatch({ type: GET_COMMAND, payload: res.data })
         ));
     }
@@ -50,7 +50,7 @@ export const getCommand = (id) => {
 
 export const getStatus = () => {
     return (dispatch) => {
-        return axios.get('http://localhost:8080/getstatus').then((res) => (
+        return axios.get('https://web.axel.mg/getstatus').then((res) => (
             dispatch({ type: GET_STATUS, payload: res.data })
         ));
     }

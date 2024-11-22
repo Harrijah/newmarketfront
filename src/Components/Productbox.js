@@ -18,7 +18,7 @@ const Productbox = ({ product, index, goto, showaproduct, searchinfo, marques, m
                     </div>
                     <button onClick={(e) => showaproduct(e, product.id)}>
                         <span className="apercu" >Aperçu</span>
-                        <img src={product.image01 ? 'http://localhost:8080/uploads/' + product.image01 : defaultimage} alt="" />
+                        <img src={product.image01 ? 'https://web.axel.mg/uploads/' + product.image01 : defaultimage} alt="" />
                     </button>
                 </div>
                 <div className="txtsection">

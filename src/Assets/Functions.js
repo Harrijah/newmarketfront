@@ -502,7 +502,7 @@ export const productfirstban = (id) => {
               <button onClick={() => changeimage(i)}>
                 <img
                   src={
-                    "http://localhost:8080/uploads/" +
+                    "https://web.axel.mg/uploads/" +
                     myproductdetails?.["image0" + i]
                   }
                   alt="pas d'image"
@@ -541,7 +541,7 @@ export const productfirstban = (id) => {
             <img
               src={
                 myproductdetails && myproductdetails.image01
-                  ? "http://localhost:8080/uploads/" + imagetoshow
+                  ? "https://web.axel.mg/uploads/" + imagetoshow
                   : defaultimage
               }
               alt={
@@ -689,7 +689,7 @@ export const similarproducts = (id) => {
                 <button>
                   <span className="apercu">Aperçu</span>
                   <img
-                    src={`http://localhost:8080/uploads/${product.image01}`}
+                    src={`https://web.axel.mg/uploads/${product.image01}`}
                     alt=""
                   />
                 </button>
@@ -751,7 +751,7 @@ export const showpromo = (id, type) => {
               <button>
                 <span className="apercu">Aperçu</span>
                 <img
-                  src={`http://localhost:8080/uploads/${myproductdetails.image01}`}
+                  src={`https://web.axel.mg/uploads/${myproductdetails.image01}`}
                   alt=""
                 />
               </button>

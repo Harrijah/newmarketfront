@@ -33,7 +33,7 @@ const Boimagelist = ({index, selectedproduct, setImages, setPreviews, images, pr
       if (selectedproduct?.[`image0${index + 1}`]) {
         if (images[index] && previews[index] == null) {
           setMyimagechoice(
-            "http://localhost:8080/uploads/" +
+            "https://web.axel.mg/uploads/" +
               selectedproduct?.[`image0${index + 1}`]
           );
             setSuppressbtn(true);
@@ -44,7 +44,7 @@ const Boimagelist = ({index, selectedproduct, setImages, setPreviews, images, pr
         } else if (changeimage && previews[index]) {
             if (selectedproduct?.[`image0${index + 1}`] == previews[index]) {
                 setMyimagechoice(
-                    "http://localhost:8080/uploads/" +
+                    "https://web.axel.mg/uploads/" +
                       selectedproduct?.[`image0${index + 1}`])
             } else {
                 setMyimagechoice(previews[index]);
@@ -52,7 +52,7 @@ const Boimagelist = ({index, selectedproduct, setImages, setPreviews, images, pr
           setSuppressbtn(true);
         } else {
           setMyimagechoice(
-            "http://localhost:8080/uploads/" +
+            "https://web.axel.mg/uploads/" +
               selectedproduct?.[`image0${index + 1}`]
           );
           setSuppressbtn(true);
