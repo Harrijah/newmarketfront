@@ -14,6 +14,7 @@ const initialState = {
 export default function createaccountReducer(state = initialState, action) {
   switch (action.type) {
     case CONNECTUSER:
+      console.log(action.payload);
       return {connectmyuser : action.payload};
 
     case CREATE_USER:
