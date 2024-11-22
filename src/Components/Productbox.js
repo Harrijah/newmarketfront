@@ -28,7 +28,7 @@ const Productbox = ({ product, index, goto, showaproduct, searchinfo, marques, m
                         <span>{!isEmpty(product.storeid) && searchinfo(magasins, product.storeid, 'nommagasin')}</span>
                     </div>
                     <div className="prixproduit">
-                        <span>{product.prix} Ar</span>
+                        <span>{product.prix} Ar </span>
                     </div>
                     <Ajoutpanier product={product} />
                 </div>
