@@ -21,6 +21,10 @@ export default function createaccountReducer(state = initialState, action) {
       return action.payload;
 
     case CONNEXION_STATUS:
+      // ------------------ afficher le contenu de USER
+      console.log(action.payload);
+      // ------------------ 
+
       sessionStorage.setItem("user", JSON.stringify(action.payload));
       // sessionStorage.setItem("commandes", JSON.stringify(action.payload[1]));
       sessionStorage.setItem("isConnected", true);

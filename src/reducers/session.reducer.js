@@ -98,6 +98,8 @@ export default function sessionReducer(state = initialState, action) {
             sessionStorage.setItem('commandes', JSON.stringify(action.payload));
             const tempstatus06 = sessionStorage.getItem('commandstatus') ? JSON.parse(sessionStorage.getItem('commandstatus')) : [];
             sessionStorage.setItem('commandstatus', JSON.stringify(tempstatus06));
+
+            
             return {
                 panier: JSON.parse(sessionStorage.getItem('panier')),
                 commandes: JSON.parse(sessionStorage.getItem('commandes')),

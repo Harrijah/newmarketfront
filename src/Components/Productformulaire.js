@@ -445,12 +445,12 @@ const Productformulaire = ({
               <div className="bricks">
                 <h3 style={{ textAlign: "center" }}>Images</h3>
                 <div className="brickctnr">
-                <Boimagelist index={0} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
-                <Boimagelist index={1} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
-                <Boimagelist index={2} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
-                <Boimagelist index={3} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
-                <Boimagelist index={4} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
-                <Boimagelist index={5} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={0} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={1} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={2} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={3} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={4} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
+                  <Boimagelist index={5} selectedproduct={selectedproduct} images={images} previews={previews} setImages={setImages} setPreviews={setPreviews} />
                 </div>
               </div>
             </div>

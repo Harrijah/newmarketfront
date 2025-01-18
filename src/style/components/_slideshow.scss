@@ -47,9 +47,9 @@
                     position: absolute;
                     display: block;
                     width: 100%;
-                    height: 20%;
-                    top: 75%;
-                    transform: translateY(-25%);
+                    height: 10%;
+                    bottom: 10%;
+                    // transform: translateY(-20%);
                     @include softbutton;
                     background-color: #ffffffa8;
                     color: $darker;
@@ -69,8 +69,8 @@
                     // top: 80%;
                     // transform: translateY(-20%);
                     @include softbutton;
-                    background-color: #23293d93;
-                    color: whitesmoke;
+                    background-color: #ffffffa8;
+                    color: $mydark;
                     font-size: 1.1rem;
                     margin: 0;
                     padding: 0 $defaultvalue03;

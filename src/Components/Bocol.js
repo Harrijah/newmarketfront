@@ -5,7 +5,7 @@ export default function Bocol({ mychoice, setMychoice, bobutton }) {
     const allbutton = bobutton.map((bouton, index) => (
         <button key={index}
             style={{ backgroundColor: (mychoice == bouton.button) && '#f0ad4e' }}
-            onClick={() => setMychoice(bouton.button)}>{bouton.text}
+            onClick={() => setMychoice(bouton.button)}>       {bouton.text}
         </button>
     ));
 

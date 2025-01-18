@@ -43,11 +43,11 @@ const Home = () => {
     const rayonlist = rayongen();
 
     // sélectionner un rayon
-    // const rayonchoice = (e) => {
-    //     setRayonselect(e.target.value);
-    //     setCategorieselect(0);
-    //     setSouscategorieselect(0);
-    // };
+    const rayonchoice = (e) => {
+        setRayonselect(e.target.value);
+        setCategorieselect(0);
+        setSouscategorieselect(0);
+    };
     
 
 
@@ -113,8 +113,6 @@ const Home = () => {
                     </div>
                     <div className="rightpart">
                         {/* <input type="text" name="" id="" className='otherinputs' placeholder='Recherche rapide ...' onChange={(e) => setClientsearchvalue(e.target.value)} value={clientsearchvalue} /> */}
-                        
-                       
                     </div>
                 </div>
                 <div className="secondbarr">
@@ -189,6 +187,8 @@ const Home = () => {
                             <span>{maxprice} Ar</span>
                             </div>
                         </div>
+
+                       {/* { Section liste de } */}
                         <Productslister rayonselect={rayonselect} categorieselect={categorieselect} souscategorieselect={souscategorieselect} keyword={keyword} maxprice={maxprice} brandselect={0} idmagasin={0} />
                     </div>
                 </div>

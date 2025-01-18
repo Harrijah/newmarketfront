@@ -25,9 +25,10 @@ const Slideshow = ({ listederayons, allproductslist, magasins, enavant }) => {
 
   // -------------------- Fonctions
   // changer value de rayon
-  const setRayon = (value) => {
-    setSelectedRayon(value);
-  };
+  // const setRayon = (value) => {
+  //   setSelectedRayon(value);
+  // };
+  
   // créer une liste de produits filtrée
   function filtermylist(selector) {
     const templist =
@@ -120,7 +121,7 @@ const Slideshow = ({ listederayons, allproductslist, magasins, enavant }) => {
                 }}>
                 <img onClick={(e) => showaproduct(e, product.id)} src={!isEmpty(allproductslist) ? "https://web.axel.mg/uploads/" + product.image01 : ""} alt="" />
                 <button className="slidebtn01" onClick={(e) => showaproduct(e, product.id)} > {product.nomproduit} </button>
-                <button className="slidebtn02" onClick={() => openstore(product.storeid)} > {searchinfo(magasins, product.storeid, "nommagasin")}</button>
+                <button className="slidebtn02" onClick={() => openstore(product.storeid)} >Chez {searchinfo(magasins, product.storeid, "nommagasin")}</button>
             </div>
           ));
       setSlidercontent(templist);

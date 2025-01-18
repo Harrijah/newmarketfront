@@ -11,6 +11,7 @@ import { positionReducer } from "./position.reducer";
 import boutiqueReducer from "./boutique.reducer";
 import sessionReducer from "./session.reducer";
 import mywishlist from "./wishlist.reducer";
+import { adsReducer } from "./ads.reducer";
 
 
 export default combineReducers({
@@ -26,4 +27,5 @@ export default combineReducers({
     boutiqueReducer,
     sessionReducer,
     mywishlist,
+    adsReducer,
 });

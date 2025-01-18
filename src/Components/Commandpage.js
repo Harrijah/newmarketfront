@@ -21,6 +21,12 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
     const status = useSelector((state) => state.sessionReducer.commandstatus);
     const [lastcommand, setLastcommand] = useState(commands && commands[commands.length - 1]);
 
+    useEffect(() => {
+        // console.log('debug');
+        
+        console.log(commands[commands.length-1]);
+    }, []);
+
     // pour l'acheteur
     const [buyerinfos, setBuyerinfos] = useState({});
     const [buyermodal, setBuyermodal] = useState(false);
@@ -39,17 +45,17 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
     // -------------------
     // calculer le dernier numéro de commande
     const getlastnumber = () => {
-        let lastnumber = '';
-        if (lastcommand) {
-            lastnumber = Number(lastcommand.id.split('X')[1]);
-        }
+        let lastnumber =  lastcommand && Number(lastcommand.id.split('X')[1]);
         setNextnumber(lastnumber + 1);
-
     }
 
+    // Mettre à jour la dernière commande quand une commande est passée
     useEffect(() => {
-        setLastcommand(commands[commands.length]);
-    }, [commands])
+        // N'oublie pas le "-1"
+        setLastcommand(commands[commands.length - 1]);
+    }, [commands]);
+
+
     useEffect(() => { 
         getlastnumber();
     }, [lastcommand]);
@@ -209,7 +215,7 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
 
     // MAJ numéro de commande
     useEffect(() => {
-        setCommandref(buyerinfos.telephone + 'X' + nextnumber);
+        setCommandref(lastcommand.id.split('X')[0] + 'X' + nextnumber);
     }, [buyerinfos])
     
 

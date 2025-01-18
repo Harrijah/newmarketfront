@@ -14,6 +14,7 @@ import { getMarque } from './action/marque.action';
 import { getallstore, getstoredata } from './action/store.action';
 import { getProduct } from './action/produit.action';
 import { getStatus } from './action/session.action';
+import { getMyAds } from './action/ads.action';
 
 // ------------- Session Storage ------------
 // sessionStorage.setItem('user', '');
@@ -30,6 +31,7 @@ store.dispatch(getMarque());
 store.dispatch(getProduct());
 store.dispatch(getallstore());
 store.dispatch(getStatus());
+store.dispatch(getMyAds());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

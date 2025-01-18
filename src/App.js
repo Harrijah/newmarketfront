@@ -9,6 +9,7 @@ import Productpage from "./pages/Productpage";
 import Allproducts from "./pages/Allproducts";
 import Commande from "./pages/Commande";
 import Testrender from "./pages/Testrender";
+import Superadmin from "./pages/Superadmin";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/commandes" element={<Commande />}></Route>
         <Route path="*" element={<Home />}></Route>
         <Route path="/testrender" element={<Testrender />}></Route>
+        <Route path="/superadmin" element={<Superadmin /> }></Route>
       </Routes>
     </BrowserRouter>
   );

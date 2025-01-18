@@ -157,7 +157,6 @@ $extraHeight: 100px;
 
   @include stdbtncolor;
 }
-
 @mixin myinput{
   display: block;
   min-width: 100px;
@@ -222,6 +221,7 @@ body{
 
   table{
     background-color: $white;
+    background-color: #fff;
     border-collapse: collapse;
     thead, tbody, tr, td{
       border: solid 1px $mylight;
@@ -948,3 +948,27 @@ body{
 
 
 }
+
+
+
+ // test input
+ #panelAdmin{
+  padding: 50px;
+    input[type="checkbox"]{
+     display: none;
+    }
+    label{
+      user-select: none;
+      @include stdparams;
+      max-width: 200px;
+      max-height: 50px;
+      margin: 5px;
+      padding: 5px;
+      border: solid 1px #22303C;
+      background-color: #82B8E7;
+    }
+    input[type="checkbox"]:checked + label{
+      transform: scale(1.3);
+      filter: brightness(150%);
+    }
+ }

@@ -13,6 +13,7 @@ import Leftlateralcolumn from "../Components/Leftlateralcolumn";
 import { isEmpty } from "../Assets/Utils";
 import { getstoredata } from "../action/store.action";
 import Moncompte from "./Moncompte";
+import Pub from "../Components/Pub";
 
 
 // CSS : pages/_backoffice.scss
@@ -48,6 +49,10 @@ const Backoffice = () => {
         {
             button: 'commands',
             text: 'Commandes'
+        },
+        {
+            button: 'pub',
+            text: 'Publicité'
         },
         {
             button: 'moncompte',
@@ -95,6 +100,9 @@ const Backoffice = () => {
             break;
         case 'commands':
             content = <Bocommands />
+            break;
+        case 'pub':
+            content = <Pub userdata={userdata} storedata={storedata} />
             break;
         default:
             content = <Bomagasin userdata={userdata} storedata={storedata} />

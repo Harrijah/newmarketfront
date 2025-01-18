@@ -152,12 +152,16 @@ const Homepub = () => {
             case 4:
                 setTodisplay(texttoshow02);
                 break;
+            
+            
+            
+            
             default:
                 setTodisplay(<img src={imagepub01} alt="" />);
         }
     }
 
-    // fonciton pour la boucle principale - avec les temps
+    // fonction pour la boucle principale - avec les temps
     const displayme = () => {
         setTimeout(() => {
             setLoopindex(1);
