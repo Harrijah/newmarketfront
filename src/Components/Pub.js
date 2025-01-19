@@ -10,7 +10,7 @@ const Pub = ({userdata, storedata}) => {
     const [listeDePubs, setListeDePubs] = useState([]);
     const pubRef = useRef();
     const dispatch = useDispatch();
-    const myads = useSelector((state) => state.productReducer.products);
+    const myads = useSelector((state) => state.adsReducer.myads);
     
     // soumettre la pub dans la base de données
     const [images, setImages] = useState([]);
@@ -26,25 +26,23 @@ const Pub = ({userdata, storedata}) => {
             lien: pubRef.current[3].value
         }
         dispatch(addMyAds(data));
-        // console.log(data);
-        
-
+        pubRef.current.reset();
     }
 
     
     // ---------------------------------- Fonctions  --------------------------------------
+    // 
     // afficher la liste des publicités 
     const showlist = () => {
-        // console.log(myads);
         const templist = !isEmpty(myads) && Array.from(myads)
             .filter((ad) => ad.storeid == storedata.id)
             .map((ad) => (
             <li key={ad.id} className="">
-                    <span className="modifyprod">
-                        <button className="nomproduit">{ad.nomproduit}</button>
-                    </span>
-                    <button className="myfontawesome"><i className="fas fa-check"></i></button>
-                    <button className="myfontawesome"><i className="fas fa-times"></i></button>
+                <span className="modifyprod">
+                    <button className="nomproduit">{ad.titre} </button>
+                </span>
+                <button className="myfontawesome"><i className="fas fa-check"></i></button>
+                <button className="myfontawesome"><i className="fas fa-times"></i></button>
             </li>
         ));
 
@@ -61,9 +59,7 @@ const Pub = ({userdata, storedata}) => {
     // lancer l'affichage de la liste de pubs
     useEffect(() => {
         showlist();
-        // console.log(myads);
-        
-    }, []);
+    }, [myads]);
 
     return (
         <div className="monmagasin">

@@ -1,26 +1,41 @@
-import React from "react";
-import { showpromo } from "../Assets/Functions";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { isEmpty } from "../Assets/Utils";
+import { searchinfo } from "../Assets/Functions";
 
 const Superadmin = () => {
-    const hlproduct = showpromo(60, 'promo');
+    // ------------------------------ variables
+    const adList = useSelector((state) => state.adsReducer.myads);
+    const magasins = useSelector((state) => state.storeReducer.allstore);
+    const [allAds, setAllAds] = useState([]);
+
+    // ------------------------------ fonctions
+    const showAds = () => {
+        const templist = !isEmpty(adList) && Array.from(adList).map((ad) => (
+            <div key={ad.id}> 
+                <input type="checkbox" name={ad.titre} id={ad.titre} />
+                <label htmlFor={ad.titre}>{ad.titre} - de <b>{ searchinfo(magasins, ad.storeid, "nommagasin") }</b></label><br />
+            </div>
+        ));
+        setAllAds(templist);
+    }
+
+
+    // ------------------------------ logiques
+    useEffect(() => {
+        showAds();
+     }, [adList]);
+
 
     return (
         <>
             <div id="panelAdmin">
-                <input type="checkbox" name="texttoshow" id="texttoshow" />
-                <label htmlFor="texttoshow">texttoshow</label><br />
-                <input type="checkbox" name="hlproduct" id="hlproduct" />
-                <label htmlFor="hlproduct">hlproduct</label><br />
-                <input type="checkbox" name="texttoshow02" id="texttoshow02" />
-                <label htmlFor="texttoshow02">texttoshow02</label><br />
-                <input type="checkbox" name="img" id="img" />
-                <label htmlFor="img">img</label><br />
+                {allAds}
             </div>
 
 
             <div id="panelPub">
-                {hlproduct}
-                <img src="./image/pub.jpg" alt="" />
+
             </div>
         </>
     )
