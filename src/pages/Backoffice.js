@@ -14,6 +14,7 @@ import { isEmpty } from "../Assets/Utils";
 import { getstoredata } from "../action/store.action";
 import Moncompte from "./Moncompte";
 import Pub from "../Components/Pub";
+import Superadmin from "./Superadmin";
 
 
 // CSS : pages/_backoffice.scss
@@ -57,6 +58,10 @@ const Backoffice = () => {
         {
             button: 'moncompte',
             text: 'Retour à mon compte'
+        }, 
+        {
+            button: 'superadmin',
+            text: 'Admin'
         }
     ];
 
@@ -103,6 +108,9 @@ const Backoffice = () => {
             break;
         case 'pub':
             content = <Pub userdata={userdata} storedata={storedata} />
+            break;
+        case 'superadmin':
+            content = <Superadmin />
             break;
         default:
             content = <Bomagasin userdata={userdata} storedata={storedata} />

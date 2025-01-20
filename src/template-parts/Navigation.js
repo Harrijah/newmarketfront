@@ -12,6 +12,7 @@ import { rapidsearchmodal, searchinfo, addproduct, searchresult } from '../Asset
 import Productbox from '../Components/Productbox';
 import Paniermodal from '../Modules/Paniermodal';
 import { getCommand } from '../action/session.action';
+import { showad } from '../action/ads.action';
 
 
 // CSS : template-parts/_navigation.scss
@@ -196,6 +197,44 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
 
+
+    
+    // ------------------------------------------  Montrer modal publicité
+    const [adsmodalcontent, setadsmodalcontent] = useState('');
+    const adstatus = useSelector(state => state.adsReducer.adstatus);
+    const adpos = useSelector(state => state.adsReducer.adpos);
+    const adid = useSelector(state => state.adsReducer.id);
+    const myads = useSelector(state => state.adsReducer.myads);
+
+    // montrer l'aperçu de publicité
+    const showadpreview = () => {
+        const tempad = !isEmpty(myads) && Array.from(myads)
+            .filter(ad => ad.id == adid)
+            .map(ad => (
+                <div>
+                    <img src="" alt={ad.texte} />
+                </div>
+            ));
+        setadsmodalcontent(tempad);
+    }
+
+    // masquer l'aperçu de publicité
+    const releasead = (e) => {
+        const data = {
+            adpos: 0,
+            adstatus: false,
+            id: 0
+        }
+        if (e.target.className == 'modal' || e.target.className == 'footerClose') {
+            dispatch(showad(data));
+        }
+    }
+
+    useEffect(() => {
+        adstatus ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
+        showadpreview();
+    }, [adstatus]);
+
     // ------------------------------------------- fonctions
     const toppanier = (e) => {
         document.body.style.overflow = 'hidden';
@@ -331,7 +370,7 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
             {/* // ---------------------- MODAL DE CONNEXION */}
             {/* Modal de connexion */}
             <div id="connexionmodal" className='modal'
-                style={{ display: connectmyuser && 'flex' }} onClick={ (e) => hidemodal(e) }>
+                style={{ display: connectmyuser && 'flex'}} onClick={ (e) => hidemodal(e) }>
                 <div className="modal-content">
                     { contenttodisplay }
                 </div>
@@ -395,6 +434,28 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
                     
                     )
                 }             
+            </div>
+
+
+
+            {/* // ---------------------- MODAL DE PUBLICITE - APERCU de ADS */}
+            {/* Modal de recherche rapide */}
+            
+            <div className="modal" id="admodal" style={{
+                display: adstatus && 'flex',
+                top: adpos ? adpos+'px' : '' 
+            }} onClick={(e) => releasead(e)}>
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h2>Apperçu de la publicité</h2>
+                    </div>
+                    <div className="modal-body">
+                        { adsmodalcontent }
+                    </div>
+                    <div className="modal-footer">
+                        <button className='footerClose' style={{ textAlign: 'center' }} onClick={(e) => releasead(e)}>Fermer</button>
+                    </div>
+                </div>
             </div>
             
         </div>

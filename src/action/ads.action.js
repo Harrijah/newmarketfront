@@ -1,6 +1,8 @@
+import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios"
 export const ADD_PUB = 'ADD_PUB';
 export const GET_PUB = 'GET_PUB';
+export const SHOW_PUB = 'SHOW_PUB';
 
 export const addMyAds = (data) => {
     return (dispatch) => {
@@ -26,6 +28,12 @@ export const getMyAds = () => {
         return axios.get('https://web.axel.mg/getads').then(res => (
             dispatch({ type: GET_PUB, payload: res.data })
         ));
+    }
+}
+
+export const showad = (data) => {
+    return (dispatch) => {
+        return dispatch({ type: SHOW_PUB, payload: data });
     }
 }
 
