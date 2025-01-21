@@ -29,7 +29,6 @@ const Pub = ({userdata, storedata}) => {
         pubRef.current.reset();
     }
 
-    
     // ---------------------------------- Fonctions  --------------------------------------
     // 
     // afficher la liste des publicités 
@@ -39,13 +38,12 @@ const Pub = ({userdata, storedata}) => {
             .map((ad) => (
             <li key={ad.id} className="">
                 <span className="modifyprod">
-                    <button className="nomproduit">{ad.titre} </button>
+                    <button className="nomproduit" onClick={(e) => sendAdStatus(e, ad.id)}>{ad.titre} </button>
                 </span>
                 <button className="myfontawesome"><i className="fas fa-check"></i></button>
                 <button className="myfontawesome"><i className="fas fa-times"></i></button>
             </li>
         ));
-
         setListeDePubs(templist);
     }
 
@@ -67,7 +65,6 @@ const Pub = ({userdata, storedata}) => {
             {/* *****************************************************************
                                     Ajouter une publicité 
                 ***************************************************************** */}
-            
             <div className="infoblock">
                 <h2>Ajouter une publicité</h2>
                 <form ref={pubRef} encType="multipart/form-data">
@@ -82,7 +79,6 @@ const Pub = ({userdata, storedata}) => {
                     {/* <input type="submit" value="Enregistrer" /> */}
                     <button onClick={(e) => { submitpub(e)}}> Envoyer </button>
                 </form>
-
             </div>
 
             <div className="infoblock">

@@ -1014,16 +1014,17 @@ body{
   background-color: #22303c8e;
   overflow-y: scroll;
   z-index: 10;
+  padding: 100px;
 
   .modal-content{
     position: relative;
-    width: 60%;
+    width: fit-content;
     min-width: 300px;
-    background-color: $color06;
+    background-color: $mydark;
     margin: auto;
     text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
+    // top: 50%;
+    // transform: translateY(-50%);
 
   }
   

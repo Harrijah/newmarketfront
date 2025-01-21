@@ -212,7 +212,7 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
             .filter(ad => ad.id == adid)
             .map(ad => (
                 <div>
-                    <img src="" alt={ad.texte} />
+                    <img src={`https://web.axel.mg/uploads/${ad.imagepub}`} alt={ad.texte} />
                 </div>
             ));
         setadsmodalcontent(tempad);
