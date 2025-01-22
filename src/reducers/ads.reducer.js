@@ -1,7 +1,7 @@
-import { ADD_PUB, GET_PUB, SHOW_PUB } from "../action/ads.action";
+import { AD_STATE, ADD_PUB, GET_PUB, SHOW_PUB } from "../action/ads.action";
 
 const initialState = {
-    myads: localStorage.getItem('myads') ? localStorage.getItem('myads') : '',
+    myads: sessionStorage.getItem('myads') ? sessionStorage.getItem('myads') : '',
     adpos: 0,
     adstatus: false,
     id: ''
@@ -11,18 +11,18 @@ const initialState = {
 export const adsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PUB:
-            localStorage.setItem('myads', JSON.stringify(action.payload));
+            sessionStorage.setItem('myads', JSON.stringify(action.payload));
             return {
-                myads: JSON.parse(localStorage.getItem('myads')),
+                myads: JSON.parse(sessionStorage.getItem('myads')),
                 adpos: 0,
                 adstatus: false,
                 id: ''
             }
         
         case GET_PUB:
-            localStorage.setItem('myads', JSON.stringify(action.payload));
+            sessionStorage.setItem('myads', JSON.stringify(action.payload));
             return {
-                myads: JSON.parse(localStorage.getItem('myads')),
+                myads: JSON.parse(sessionStorage.getItem('myads')),
                 adpos: 0,
                 adstatus: false,
                 id: ''
@@ -30,11 +30,23 @@ export const adsReducer = (state = initialState, action) => {
         
         case SHOW_PUB:
             return {
-                myads: JSON.parse(localStorage.getItem('myads')),
+                myads: JSON.parse(sessionStorage.getItem('myads')),
                 adpos: action.payload.adpos,
                 adstatus: action.payload.adstatus,
                 id: action.payload.id
             }
+        
+        case AD_STATE:
+            sessionStorage.setItem('myads', JSON.stringify(action.payload));
+            console.log(action.payload);
+            
+            return {
+                myads: JSON.parse(sessionStorage.getItem('myads')),
+                adpos: 0,
+                adstatus: false,
+                id: ''
+            }
+        
         default:
             return state;
     }

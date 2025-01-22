@@ -3,6 +3,7 @@ import axios from "axios"
 export const ADD_PUB = 'ADD_PUB';
 export const GET_PUB = 'GET_PUB';
 export const SHOW_PUB = 'SHOW_PUB';
+export const AD_STATE = 'AD_STATE';
 
 export const addMyAds = (data) => {
     return (dispatch) => {
@@ -34,6 +35,16 @@ export const getMyAds = () => {
 export const showad = (data) => {
     return (dispatch) => {
         return dispatch({ type: SHOW_PUB, payload: data });
+    }
+}
+
+export const updateAdState = (data) => {
+    return (dispatch) => {
+        console.log(data);
+        
+        return axios.post(`https://web.axel.mg/updatead`, data).then(res => (
+            dispatch({ type: AD_STATE, payload: res.data })
+        ));
     }
 }
 

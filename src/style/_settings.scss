@@ -994,6 +994,13 @@ body{
       padding: 5px;
       border: solid 1px #22303C;
       background-color: green;
+      &:hover{
+        filter: brightness(125%);
+        cursor: pointer;
+      }
+      &:active{
+        filter: brightness(150%);
+      }
     }
     input[type="checkbox"]:checked + label{
       // transform: scale(1.3);
