@@ -10,6 +10,7 @@ import Allproducts from "./pages/Allproducts";
 import Commande from "./pages/Commande";
 import Testrender from "./pages/Testrender";
 import Superadmin from "./pages/Superadmin";
+import BlogPage from "./pages/BlogPage";
 
 const App = () => {
   return (
@@ -23,9 +24,12 @@ const App = () => {
         <Route path="/product/:id" element={<Productpage />}></Route>
         <Route path="/allproducts" element={<Allproducts />}></Route>
         <Route path="/commandes" element={<Commande />}></Route>
-        <Route path="*" element={<Home />}></Route>
         <Route path="/testrender" element={<Testrender />}></Route>
-        <Route path="/superadmin" element={<Superadmin /> }></Route>
+        <Route path="/superadmin" element={<Superadmin />}></Route>
+        <Route path="/news/:id" element={<BlogPage />}></Route>
+        
+
+        <Route path="*" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -305,7 +305,7 @@ body{
     }
   }
 
-  .wishbutton, input{
+  .wishbutton, input, select{
       @include myinput;
   }
   .imginput{

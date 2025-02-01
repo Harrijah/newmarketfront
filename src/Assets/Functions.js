@@ -695,9 +695,19 @@ export const similarproducts = (id) => {
                 </button>
               </div>
               <div className="txtsection">
-                <a href={`/product/${product.id}`}>
+                <a onClick={() => goto(product.id)}>
                   <h3>{product.nomproduit}</h3>
                 </a>
+                {/* <button
+                  onClick={() => goto(product.id)}
+                  style={{
+                      backgroundColor: 'none',
+                      border: 'none',
+                      width: '100%',
+                      cursor: 'pointer',
+                      padding: '5px'
+                  }}
+                >{product.nomproduit}</button> */}
               </div>
             </div>
           </div>

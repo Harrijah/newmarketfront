@@ -354,6 +354,7 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
                     <NavLink to='/'>Accueil</NavLink>
                     <NavLink to='/allproducts'>Produits</NavLink>
                     <NavLink to='/boutiques'>Boutiques</NavLink>
+                    <NavLink to='/news'>Actus</NavLink>
 
                     {/* // ---------------------- COMPTE */}
                     {isConnected && <NavLink to='/moncompte'>Moncompte</NavLink>} 

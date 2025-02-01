@@ -21,6 +21,7 @@ export const adsReducer = (state = initialState, action) => {
         
         case GET_PUB:
             sessionStorage.setItem('myads', JSON.stringify(action.payload));
+            console.log(JSON.parse(sessionStorage.getItem('myads')));
             return {
                 myads: JSON.parse(sessionStorage.getItem('myads')),
                 adpos: 0,

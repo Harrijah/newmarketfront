@@ -12,6 +12,7 @@ import { showMyproduct } from '../action/showproduct.action';
 import { modalposition } from '../action/position.action';
 import { useNavigate } from 'react-router-dom';
 import Homepub from '../Modules/Homepub';
+import Homeblog from '../Modules/Homeblog';
 
 
 // CSS : pages/_home.scss
@@ -192,6 +193,7 @@ const Home = () => {
                         <Productslister rayonselect={rayonselect} categorieselect={categorieselect} souscategorieselect={souscategorieselect} keyword={keyword} maxprice={maxprice} brandselect={0} idmagasin={0} />
                     </div>
                 </div>
+                <Homeblog />
             </div>
             <Footer />
         </div>

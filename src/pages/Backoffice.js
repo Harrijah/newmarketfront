@@ -14,6 +14,7 @@ import { isEmpty } from "../Assets/Utils";
 import { getstoredata } from "../action/store.action";
 import Moncompte from "./Moncompte";
 import Pub from "../Components/Pub";
+import BlogForm from "../Components/BlogForm";
 import Superadmin from "./Superadmin";
 
 
@@ -38,7 +39,7 @@ const Backoffice = () => {
     const premyproducts = [];
     
     // les boutons du leftcol
-    const bobutton = [
+    const bobutton = userdata.id == 1 ? [
         {
             button: 'magasin',
             text: 'A propos du magasin'
@@ -56,12 +57,41 @@ const Backoffice = () => {
             text: 'Publicité'
         },
         {
-            button: 'moncompte',
-            text: 'Retour à mon compte'
+            button: 'blogform',
+            text: 'Blog'
         }, 
         {
             button: 'superadmin',
             text: 'Admin'
+        },
+        {
+            button: 'moncompte',
+            text: 'Retour à mon compte'
+        }
+    ] : [
+        {
+            button: 'magasin',
+            text: 'A propos du magasin'
+        },
+        {
+            button: 'products',
+            text: 'Produits'
+        },
+        {
+            button: 'commands',
+            text: 'Commandes'
+        },
+        {
+            button: 'pub',
+            text: 'Publicité'
+        },
+        {
+            button: 'blogform',
+            text: 'Blog'
+        },
+        {
+            button: 'moncompte',
+            text: 'Retour à mon compte'
         }
     ];
 
@@ -110,7 +140,10 @@ const Backoffice = () => {
             content = <Pub userdata={userdata} storedata={storedata} />
             break;
         case 'superadmin':
-            content = <Superadmin />
+            userdata.id == 1 ? content = <Superadmin /> : ''
+            break;
+        case 'blogform':
+            content = <BlogForm userdata={userdata} storedata={storedata} />
             break;
         default:
             content = <Bomagasin userdata={userdata} storedata={storedata} />

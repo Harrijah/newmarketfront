@@ -6,7 +6,6 @@ import { isEmpty } from "../Assets/Utils";
 const Homepub = () => {
     const listeDePubBrute = useSelector(state => state.adsReducer.myads); // récupérer les pubs sous forme tableau d'objets
     const listeDePub = !isEmpty(listeDePubBrute) && Array.from(listeDePubBrute).filter((ad) => ad['active'] == '1'); // filtrer les pubs "cochées" dans la bdd
-    console.log(listeDePub);
     
     const [pubActiveIdx, setPubActiveIdx] = useState(0);
 
@@ -21,9 +20,11 @@ const Homepub = () => {
         }, 1000);
 
         // nettoyer le timer à chaque changement de pub active ou à la fin du composant
+        console.log(listeDePub);
         return () => clearTimeout(timer);
+        
 
-    }, [pubActiveIdx, listeDePubBrute]);
+    }, [pubActiveIdx, listeDePubBrute, listeDePub]);
 
     // si pas de pub disponible, on afficher un message ou alors une pub par défaut
     if (listeDePub.length === 0) {
@@ -32,8 +33,6 @@ const Homepub = () => {
 
     // récupérer la pub active
     const pubActive = listeDePub[pubActiveIdx];
-
-
 
     return (
         <>
