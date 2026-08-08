@@ -20,7 +20,7 @@ const Homepub = () => {
         }, 1000);
 
         // nettoyer le timer à chaque changement de pub active ou à la fin du composant
-        console.log(listeDePub);
+        // console.log(listeDePub);
         return () => clearTimeout(timer);
         
 
@@ -33,10 +33,11 @@ const Homepub = () => {
 
     // récupérer la pub active
     const pubActive = listeDePub[pubActiveIdx];
+    // console.log(pubActive);
 
     return (
         <>
-            <img src={`https://web.axel.mg/uploads/${pubActive.imagepub}`} alt={pubActive.titre} />
+            {pubActive && <img src={`https://web.axel.mg/uploads/${pubActive.imagepub}`} alt={pubActive.titre} />}
         </>
     )
 }
