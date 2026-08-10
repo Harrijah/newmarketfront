@@ -1,10 +1,12 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import {addCommand} from "../action/session.action";
+import {useDispatch} from "react-redux";
 
 
 
 
-
-export default function Paypal({listofproducts}) {
+export default function Paypal({listofproducts, buyerinfos, ttlgeneral, commanddata}) {
+    const dispatch = useDispatch();
     function createOrder() {
         // return fetch("http://localhost:3000/create-paypal-order", {
         return fetch("https://trade.axel.mg/create-paypal-order", {
@@ -16,8 +18,9 @@ export default function Paypal({listofproducts}) {
             // like product ids and quantities
             body: JSON.stringify({
                 cart: listofproducts,
-                // flow: "checkout",
-                amount: "10.0",
+                buyer: buyerinfos,
+                flow: "checkout",
+                amount: ttlgeneral,
                 currency: "USD",
                 // intent: "capture",
             }),
@@ -25,8 +28,7 @@ export default function Paypal({listofproducts}) {
             .then((response) => response.json())
             .then((order) => order.id);
     }
-    function onApprove(data) {
-        //   return fetch("http://localhost:3000/commandes/capture-paypal-order", {
+    function onApprove(data) {        
           return fetch("https://trade.axel.mg/commandes/capture-paypal-order", {
             method: "POST",
             headers: {
@@ -34,24 +36,35 @@ export default function Paypal({listofproducts}) {
             },
             body: JSON.stringify({
               orderID: data.orderID,
-              // amount: "10.0",
-              // currency: "USD",
+              amount: ttlgeneral,
+              currency: "USD",
             })
           })
-          .then((response) => response.json())
-          .then((orderData) => {
-                const name = orderData.payer.name.given_name;
-                alert(`Transaction completed by ${name}`);
-          });
-
+            .then((response) => {
+              if(!response.ok) {
+                  throw new Error(`Erreur HTTP : ${response.status}`);
+                } 
+                return response.json();
+                
+            })
+            .then((orderData) => {
+                    const name = orderData.payer.name.given_name;
+                    alert(`Transaction completed by ${name}`);
+                    dispatch(addCommand(commanddata));
+                })
+            .catch((error) => {
+                console.error("Erreur lors du paiement : ", error);
+                alert("Le paiement n'a pas été confirmé");
+            });
+                
         }
     
     
     return (
         <PayPalScriptProvider options={{ clientId: "ARclgTf_H2nEr36scJRPNixO21TB5WLqA65EKCZozkiemG79YELU3hTkFd0txqchaWY6sRTKt687NKpz" }}>
             <PayPalButtons
-                // createOrder={createOrder}
-                // onApprove={onApprove}
+                createOrder={createOrder}
+                onApprove={onApprove}
             />
         </PayPalScriptProvider>
     );

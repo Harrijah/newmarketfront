@@ -138,22 +138,24 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
         setPaymodal(true);
     }
 
+    const commanddata = {
+        id: commandref,
+        payref: mypayref ? mypayref.current[0].value : 'paid_with_paypal',
+        clientid: aboutUser.id || buyerinfos.telephone,
+        products: JSON.stringify(currentcart) ,
+        datecommande: commanddate,
+        status: 1,
+        datelivraison: '',
+        lieulivraison: buyerinfos.adresse + ' ' + buyerinfos.ville,
+        aboutcustomer: JSON.stringify(buyerinfos),
+        totalprix: ttlgeneral,
+    }
+
     // valider le paiement via mobile money
-    const validatepay = (e) => {
-        const data = {
-            id: commandref,
-            payref: mypayref.current[0].value,
-            clientid: aboutUser.id || buyerinfos.telephone,
-            products: JSON.stringify(currentcart) ,
-            datecommande: commanddate,
-            status: 1,
-            datelivraison: '',
-            lieulivraison: buyerinfos.adresse + ' ' + buyerinfos.ville,
-            aboutcustomer: JSON.stringify(buyerinfos),
-            totalprix: ttlgeneral,
-        }
+    const validatepay = (e, commanddata) => {
+
         e.preventDefault();
-        dispatch(addCommand(data));
+        dispatch(addCommand(commanddata));
         // console.log(data);
         
         setPaymodal(false);    
@@ -290,7 +292,7 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
                 <h2>Procéder au paiement</h2>
                 <div className="paybutt">
                     <button className="mobmon" onClick={(e) => showpay(e)}>Payer avec Mobile Money</button>
-                    <Paypal className='paypal' listofproducts={listofproducts} buyerinfos={buyerinfos} />
+                    <Paypal className='paypal' listofproducts={listofproducts} buyerinfos={buyerinfos} ttlgeneral={ttlgeneral} commanddata={commanddata} />
                 </div>
             </div>
         </div>
