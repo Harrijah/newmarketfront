@@ -15,17 +15,8 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
     const [listofproducts, setListofproducts] = useState([]);
     const [content, setContent] = useState('');
     const [commanddate, setCommanddate] = useState('');
-    const [nextnumber, setNextnumber] = useState(101);
-    const [commandref, setCommandref] = useState(nextnumber);
-    const commands = useSelector((state) => state.sessionReducer.commandes);
+    const [commandref, setCommandref] = useState(0);
     const status = useSelector((state) => state.sessionReducer.commandstatus);
-    const [lastcommand, setLastcommand] = useState(commands && commands[commands.length - 1]);
-
-    useEffect(() => {
-        // console.log('debug');
-        
-        console.log(commands[commands.length-1]);
-    }, []);
 
     // pour l'acheteur
     const [buyerinfos, setBuyerinfos] = useState({});
@@ -43,23 +34,34 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
     // -------------------
     // --------- fonctions
     // -------------------
-    // calculer le dernier numéro de commande
-    const getlastnumber = () => {
-        let lastnumber =  lastcommand && Number(lastcommand.id.split('X')[1]);
-        setNextnumber(lastnumber + 1);
+    
+    // infos par défaut sur l'acheteur
+    const setbuyerdata = () => {
+        const data = {
+            nom: aboutUser.nom,
+            prenom: aboutUser.prenom,
+            adresse: aboutUser.adresse,
+            ville: aboutUser.ville + ' ' + aboutUser.codepostal + ' ' + aboutUser.pays,
+            telephone: aboutUser.telephone,
+            mail: aboutUser.email
+        }
+        setBuyerinfos(data);
     }
-
-    // Mettre à jour la dernière commande quand une commande est passée
-    useEffect(() => {
-        // N'oublie pas le "-1"
-        setLastcommand(commands[commands.length - 1]);
-    }, [commands]);
-
-
-    useEffect(() => { 
-        getlastnumber();
-    }, [lastcommand]);
-
+    
+    // changer temporairement les infos de l'acheteur
+    const savebuyerinfo = (e) => {
+        e.preventDefault();
+        const data = {
+            nom: buyerref.current[0].value,
+            prenom: buyerref.current[1].value,
+            telephone: buyerref.current[2].value,
+            mail: buyerref.current[3].value,
+            adresse: buyerref.current[4].value,
+            ville: buyerref.current[6].value + ' ' + buyerref.current[5].value + ' ' + buyerref.current[7].value,
+        }
+        setBuyerinfos(data);
+        setBuyermodal(false);
+    }
 
     // calculer la date de la commande
     const dateref = () => {
@@ -71,8 +73,10 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
             minute: 'numeric'
         });
         return setCommanddate(mydate);
-        // console.log(commanddate);
+        console.log(commanddate);
     }
+
+
     // simple liste de produits
     const productslist = () => {
         let templist = [];
@@ -122,33 +126,6 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
         }
     }   
 
-    // infos par défaut sur l'acheteur
-    const setbuyerdata = () => {
-        const data = {
-            nom: aboutUser.nom,
-            prenom: aboutUser.prenom,
-            adresse: aboutUser.adresse,
-            ville: aboutUser.ville + ' ' + aboutUser.codepostal + ' ' + aboutUser.pays,
-            telephone: aboutUser.telephone,
-            mail: aboutUser.email
-        }
-        setBuyerinfos(data);
-    }
-    // changer temporairement les infos de l'acheteur
-    const savebuyerinfo = (e) => {
-        e.preventDefault();
-        const data = {
-            nom: buyerref.current[0].value,
-            prenom: buyerref.current[1].value,
-            telephone: buyerref.current[2].value,
-            mail: buyerref.current[3].value,
-            adresse: buyerref.current[4].value,
-            ville: buyerref.current[6].value + ' ' + buyerref.current[5].value + ' ' + buyerref.current[7].value,
-        }
-        setBuyerinfos(data);
-        setBuyermodal(false);
-    }
-
     // cacher le modal pay
     const hidepay = (e) => {
         e.target.className == 'modal' && setPaymodal(false);
@@ -177,7 +154,7 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
         }
         e.preventDefault();
         dispatch(addCommand(data));
-        console.log(data);
+        // console.log(data);
         
         setPaymodal(false);    
     }
@@ -215,7 +192,7 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
 
     // MAJ numéro de commande
     useEffect(() => {
-        setCommandref(lastcommand.id.split('X')[0] + 'X' + nextnumber);
+        setCommandref(buyerinfos.telephone + 'X' + commanddate);
     }, [buyerinfos])
     
 

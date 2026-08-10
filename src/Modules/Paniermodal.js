@@ -1,9 +1,11 @@
 import React from "react";
 import { cartfirstpart } from "../Assets/Functions";
+import { useNavigate } from "react-router-dom";
 
 
 const Paniermodal = () => {
     const paniercontent = cartfirstpart();
+    const navigate = useNavigate();
     return (
         
     <div className="modal-content">
@@ -16,7 +18,7 @@ const Paniermodal = () => {
             </div>
         </div>
         <div className="modal-footer">
-            <button>Valider le panier</button>
+            <button onClick={() => navigate('/commandes')}>Valider le panier</button>
         </div>
     </div>
     );
