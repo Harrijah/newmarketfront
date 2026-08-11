@@ -8,8 +8,8 @@ import {useDispatch} from "react-redux";
 export default function Paypal({listofproducts, buyerinfos, ttlgeneral, commanddata}) {
     const dispatch = useDispatch();
     function createOrder() {
-        return fetch("http://localhost:3000/create-paypal-order", {
-        // return fetch("https://trade.axel.mg/create-paypal-order", {
+        // return fetch("http://localhost:3000/create-paypal-order", {
+        return fetch("https://web.axel.mg/create-paypal-order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,37 +55,69 @@ export default function Paypal({listofproducts, buyerinfos, ttlgeneral, commandd
         });
     }
     
+    // function onApprove(data) {        
+    //     // return fetch("http://localhost:3000/create-paypal-order", {
+    //     return fetch("https://web.axel.mg/capture-paypal-order", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         orderID: data.orderID,
+    //         amount: ttlgeneral,
+    //         currency: "USD",
+    //     })
+    //     })
+    //     .then((response) => {
+    //         if(!response.ok) {
+    //             throw new Error(`Erreur HTTP : ${response.status}`);
+    //         } 
+    //         return response.json();
+            
+    //     })
+    //     .then((orderData) => {
+    //             const name = orderData.payer.name.given_name || 'Guest';
+    //             alert(`Transaction completed by ${name}`);
+    //             dispatch(addCommand(commanddata));
+    //         })
+    //     .catch((error) => {
+    //         console.error("Erreur lors du paiement : ", error);
+    //         alert("Le paiement n'a pas été confirmé");
+    //     });
+            
+    // }
+    
     function onApprove(data) {        
-        return fetch("http://localhost:3000/create-paypal-order", {
-        // return fetch("https://trade.axel.mg/commandes/capture-paypal-order", {
+    return fetch("https://web.axel.mg/capture-paypal-order", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             orderID: data.orderID,
             amount: ttlgeneral,
             currency: "USD",
         })
-        })
-        .then((response) => {
-            if(!response.ok) {
-                throw new Error(`Erreur HTTP : ${response.status}`);
-            } 
-            return response.json();
-            
-        })
-        .then((orderData) => {
-                const name = orderData.payer.name.given_name;
-                alert(`Transaction completed by ${name}`);
-                dispatch(addCommand(commanddata));
-            })
-        .catch((error) => {
-            console.error("Erreur lors du paiement : ", error);
-            alert("Le paiement n'a pas été confirmé");
-        });
-            
-    }
+    })
+    .then(async (response) => {
+        const text = await response.text();
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP ${response.status} : ${text}`);
+        }
+        try {
+            return JSON.parse(text);
+        } catch (error) {
+            throw new Error(`Réponse non-JSON : ${text}`);
+        }
+    })
+    .then((orderData) => {
+        const name = orderData?.payer?.name?.given_name || "client";
+        alert(`Transaction completed by ${name}`);
+        dispatch(addCommand(commanddata));
+    })
+    .catch((error) => {
+        console.error("Erreur lors du paiement : ", error);
+        alert("Le paiement n'a pas été confirmé");
+    });
+}
     
     
     return (
