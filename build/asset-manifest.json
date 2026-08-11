@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.13a5c36b.css",
-    "main.js": "/static/js/main.0d99131f.js",
+    "main.js": "/static/js/main.684eb203.js",
     "static/media/pdc.jpg": "/static/media/pdc.84484d4337fc978a9f81.jpg",
     "static/media/Nunito-Italic-VariableFont_wght.ttf": "/static/media/Nunito-Italic-VariableFont_wght.749b59811ed46de3c015.ttf",
     "static/media/carte.jpg": "/static/media/carte.fba642475174ca86a1d5.jpg",
     "index.html": "/index.html",
     "main.13a5c36b.css.map": "/static/css/main.13a5c36b.css.map",
-    "main.0d99131f.js.map": "/static/js/main.0d99131f.js.map"
+    "main.684eb203.js.map": "/static/js/main.684eb203.js.map"
   },
   "entrypoints": [
     "static/css/main.13a5c36b.css",
-    "static/js/main.0d99131f.js"
+    "static/js/main.684eb203.js"
   ]
 }

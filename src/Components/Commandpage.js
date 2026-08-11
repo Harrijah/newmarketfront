@@ -25,8 +25,7 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
 
     // validation panier
     const [paymodal, setPaymodal] = useState(false);
-    const mypayref = useRef();
-
+    const mypayref = useRef()
     const dispatch = useDispatch();
     let provttl = 0;
     
@@ -138,9 +137,10 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
         setPaymodal(true);
     }
 
+
     const commanddata = {
         id: commandref,
-        payref: mypayref ? mypayref.current[0].value : 'paid_with_paypal',
+        payref: 'paid_with_paypal',
         clientid: aboutUser.id || buyerinfos.telephone,
         products: JSON.stringify(currentcart) ,
         datecommande: commanddate,
@@ -150,10 +150,10 @@ const Commandpage = ({ allproductslist, marques, magasins, currentcart, ttlgener
         aboutcustomer: JSON.stringify(buyerinfos),
         totalprix: ttlgeneral,
     }
-
+    
     // valider le paiement via mobile money
     const validatepay = (e, commanddata) => {
-
+        payref: mypayref.current[0].value;
         e.preventDefault();
         dispatch(addCommand(commanddata));
         // console.log(data);

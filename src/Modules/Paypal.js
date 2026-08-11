@@ -8,56 +8,84 @@ import {useDispatch} from "react-redux";
 export default function Paypal({listofproducts, buyerinfos, ttlgeneral, commanddata}) {
     const dispatch = useDispatch();
     function createOrder() {
-        // return fetch("http://localhost:3000/create-paypal-order", {
-        return fetch("https://trade.axel.mg/create-paypal-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            // use the "body" param to optionally pass additional order information
-            // like product ids and quantities
-            body: JSON.stringify({
-                cart: listofproducts,
-                buyer: buyerinfos,
-                flow: "checkout",
-                amount: ttlgeneral,
-                currency: "USD",
-                // intent: "capture",
-            }),
+        return fetch("http://localhost:3000/create-paypal-order", {
+        // return fetch("https://trade.axel.mg/create-paypal-order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                // use the "body" param to optionally pass additional order information
+                // like product ids and quantities
+                body: JSON.stringify({
+                    cart: listofproducts,
+                    buyer: buyerinfos,
+                    flow: "checkout",
+                    amount: ttlgeneral,
+                    currency: "USD",
+                    // intent: "capture",
+                }),
+            })
+            // .then((response) => response.json())
+        // .then((order) => order.id);
+        .then(async (response) => {
+            console.log("STATUS :", response.status);
+            console.log("CONTENT-TYPE :", response.headers.get("content-type"));
+
+            const text = await response.text();
+
+            console.log("RÉPONSE BRUTE DU SERVEUR :", text);
+
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP ${response.status} : ${text}`);
+            }
+
+            try {
+                return JSON.parse(text);
+            } catch (error) {
+                throw new Error(`Le serveur n'a pas renvoyé du JSON : ${text}`);
+            }
         })
-            .then((response) => response.json())
-            .then((order) => order.id);
+        .then((order) => {
+            console.log("ORDER :", order);
+            return order.id;
+        })
+        .catch((error) => {
+            console.error("ERREUR CREATE ORDER :", error);
+            throw error;
+        });
     }
+    
     function onApprove(data) {        
-          return fetch("https://trade.axel.mg/commandes/capture-paypal-order", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              orderID: data.orderID,
-              amount: ttlgeneral,
-              currency: "USD",
+        return fetch("http://localhost:3000/create-paypal-order", {
+        // return fetch("https://trade.axel.mg/commandes/capture-paypal-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            orderID: data.orderID,
+            amount: ttlgeneral,
+            currency: "USD",
+        })
+        })
+        .then((response) => {
+            if(!response.ok) {
+                throw new Error(`Erreur HTTP : ${response.status}`);
+            } 
+            return response.json();
+            
+        })
+        .then((orderData) => {
+                const name = orderData.payer.name.given_name;
+                alert(`Transaction completed by ${name}`);
+                dispatch(addCommand(commanddata));
             })
-          })
-            .then((response) => {
-              if(!response.ok) {
-                  throw new Error(`Erreur HTTP : ${response.status}`);
-                } 
-                return response.json();
-                
-            })
-            .then((orderData) => {
-                    const name = orderData.payer.name.given_name;
-                    alert(`Transaction completed by ${name}`);
-                    dispatch(addCommand(commanddata));
-                })
-            .catch((error) => {
-                console.error("Erreur lors du paiement : ", error);
-                alert("Le paiement n'a pas été confirmé");
-            });
-                
-        }
+        .catch((error) => {
+            console.error("Erreur lors du paiement : ", error);
+            alert("Le paiement n'a pas été confirmé");
+        });
+            
+    }
     
     
     return (
