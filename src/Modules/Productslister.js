@@ -47,7 +47,7 @@ const Productslister = ({ rayonselect, categorieselect, souscategorieselect, bra
                     // || removeAccents(product.courtdescript.toLowerCase()).includes(keyword)
                     : true)
                 .map((product, index) => ( 
-                    <Productbox key={product.id} product={product} index={index} goto={goto} showaproduct={showaproduct} searchinfo={searchinfo} marques={marques} magasins={magasins} isEmpty={isEmpty}/>
+                    <Productbox key={product.id} product={product} index={index} goto={goto} showaproduct={showaproduct} searchinfo={searchinfo} marques={marques} magasins={magasins} isEmpty={isEmpty} defaultimage={defaultimage} />
                         ) 
                     );             
             setFilteredproductlist(templist);

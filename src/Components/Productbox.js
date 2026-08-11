@@ -5,7 +5,7 @@ import Ajoutpanier from "./Ajoutpanier";
 import Addtowish from "./Addtowish";
 
 
-const Productbox = ({ product, index, goto, showaproduct, searchinfo, marques, magasins, isEmpty }) => {
+const Productbox = ({ product, index, goto, showaproduct, searchinfo, marques, magasins, isEmpty, defaultimage }) => {
     
     
     return (
