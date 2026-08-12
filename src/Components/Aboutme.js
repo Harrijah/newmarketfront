@@ -41,6 +41,8 @@ const Aboutme = ({ aboutUser }) => {
     }
 
     const [userList, setUserList] = useState([]);
+
+    // liste les boutons => composant : "Components/Editbutton"
     useEffect(() => { 
         const list = [];
         for (let i = 0; i < userinfos.length; i++) {
