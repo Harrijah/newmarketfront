@@ -4,32 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from "../action/createaccount.action";
 import { showMyproduct } from "../action/showproduct.action";
 import { modalposition } from "../action/position.action";
-import { rapidsearchmodal, searchresult } from "../Assets/Functions";
-
 
 
 // import './_aboutme.scss';
 const Aboutme = ({ aboutUser }) => {
-    // variables
+    
     const dispatch = useDispatch();
 
-    
-
-    const champs = [aboutUser.nom, aboutUser.prenom, aboutUser.adresse, aboutUser.ville, aboutUser.codepostal, aboutUser.pays, aboutUser.telephone, aboutUser.email];
-
+    /** mettre chaque item dans un tableau afin de faciliter la modification dans une boucle
+     * userinfos[0] représente le nom de l'item au frontend (exemple : "Nom")
+     * userinfos[1] représente la valeur de cet item dans MySQL (exemple : "DUPONT")
+     * userinfos[2] représente le nom de la colonne dans MySQL afin de faciliter la modification dans le code
+     */
     const userinfos = [
-        ['Nom', champs[0], 'nom'],
-        ['Prénom', champs[1], 'prenom'],
-        ['Adresse', champs[2], 'adresse'],
-        ['Ville', champs[3], 'ville'],
-        ['Code postal', champs[4], 'codepostal'],
-        ['Pays', champs[5], 'pays'],
-        ['Téléphone', champs[6], 'telephone'],
-        ['Email', champs[7], 'email'],
+        ['Nom', aboutUser.nom, 'nom'],
+        ['Prénom', aboutUser.prenom, 'prenom'],
+        ['Adresse', aboutUser.adresse, 'adresse'],
+        ['Ville', aboutUser.ville, 'ville'],
+        ['Code postal', aboutUser.codepostal, 'codepostal'],
+        ['Pays', aboutUser.pays, 'pays'],
+        ['Téléphone', aboutUser.telephone, 'telephone'],
+        ['Email', aboutUser.email, 'email'],
     ];
 
 
-    // fonctions 
+    /** fonction  pour modifier la valeur d'un item */
     function submitedit(i, newValue) {
         const data = {
             id: aboutUser.id,
@@ -40,28 +39,27 @@ const Aboutme = ({ aboutUser }) => {
         dispatch(updateUser(data));
     }
 
-    const [userList, setUserList] = useState([]);
-
-    // liste les boutons => composant : "Components/Editbutton"
-    useEffect(() => { 
-        const list = [];
-        for (let i = 0; i < userinfos.length; i++) {
-            list.push(
-                <Editbutton key={i} userinfos={userinfos} champs={champs} i={i} submitedit={submitedit} />
-            );
-        }
-        setUserList(list);
-    }, []);
-
-
-
     return (
         <div className="monmagasin">
             <h1>A propos de moi </h1>
             <div className="infoblock">
                 <h2>Mes informations</h2>
+                {/**  
+                 * liste des items dans la section "Mes informations" 
+                 * chaque item (exemple : Nom : DUPONT) se trouve dans un composant nommé "Editbutton"
+                 * il s'agit d'une boucle dont les informations se trouvent dans le tableau "userinfos"
+                 * */}
                 <ul>
-                    {userList} 
+                    {
+                        userinfos.map((user, i) => {
+                            <Editbutton
+                                key = {user[2]}
+                                userinfos = {userinfos}
+                                i={i}
+                                submitedit={submitedit}
+                            />
+                        })
+                    } 
                 </ul>
             </div>
         </div>
