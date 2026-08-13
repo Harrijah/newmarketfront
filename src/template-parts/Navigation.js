@@ -8,7 +8,8 @@ import { showMyproduct } from '../action/showproduct.action';
 import { getOneproduct } from '../action/produit.action';
 import { isEmpty } from '../Assets/Utils';
 import { modalposition } from '../action/position.action';
-import { rapidsearchmodal, searchinfo, addproduct, searchresult } from '../Assets/Functions';
+import { addproduct, searchresult } from '../Assets/Functions';
+import { rapidsearchmodal, searchinfo } from '../Assets/Utils';
 import Productbox from '../Components/Productbox';
 import Paniermodal from '../Modules/Paniermodal';
 import { getCommand } from '../action/session.action';
@@ -285,7 +286,7 @@ const Navigation = ({ allproductslist, magasins, marques }) => {
         } else {
             document.body.style.overflow = 'auto';
         }
-    }, [connectmyuser]);
+    }, [cartpreview]);
     
     // affichage 1 produit - product to show - product details
     useEffect(() => {

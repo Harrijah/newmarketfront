@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { searchinfo } from "../Assets/Functions";
+import { searchinfo } from '../Assets/Utils';
 import { numStr } from "../Assets/Utils";
 
 

@@ -16,7 +16,9 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 //------------------------------ Autres -------------------------------------------
 import { isEmpty } from "../Assets/Utils";
-import { categorygen, rayonsgen, souscatgen } from "../Assets/Functions";
+import { categorygen, souscatgen } from "../Assets/Functions";
+import { useRayonOptions } from "../hooks/useRayonOptions";
+
 
 
 const Productformulaire = ({
@@ -63,7 +65,7 @@ const Productformulaire = ({
   };
   
   //------------------------ Lister les rayons
-  const rayonlist = rayonsgen();
+  const rayonlist = useRayonOptions();
 
   //------------------------ Rayon de produit sélectionné et choix de rayon
   const productRayon = selectedproduct && rayon ? rayon.find((myrayon) => {

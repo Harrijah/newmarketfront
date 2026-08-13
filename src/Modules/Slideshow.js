@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "../Assets/Utils";
 import { showMyproduct } from "../action/showproduct.action";
 import { modalposition } from "../action/position.action";
-import { searchinfo } from "../Assets/Functions";
+import { searchinfo } from '../Assets/Utils';
 import { useNavigate } from "react-router-dom";
 
 // css : './components/_slideshow.scss'

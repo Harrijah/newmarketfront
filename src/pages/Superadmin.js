@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "../Assets/Utils";
-import { searchinfo } from "../Assets/Functions";
+import { searchinfo } from '../Assets/Utils';
 import { showad, updateAdState } from "../action/ads.action";
 
 const Superadmin = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { searchinfo } from "../Assets/Functions";
+import { searchinfo } from '../Assets/Utils';
 import { numStr } from "../Assets/Utils";
 import Paypal from "../Modules/Paypal";
 import { useDispatch, useSelector } from "react-redux";

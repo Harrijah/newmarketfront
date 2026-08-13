@@ -1,7 +1,7 @@
 import { convertToRaw, EditorState } from "draft-js";
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { rayonsgen } from "../Assets/Functions";
+import { useRayonOptions } from "../hooks/useRayonOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewBlog } from "../action/blog.action";
 import { isEmpty } from "../Assets/Utils";
@@ -11,7 +11,7 @@ const BlogForm = ({userdata, storedata}) => {
     const [listeArticle, setListeArticle] = useState([]);
     const [monArticle, setMonArticle] = useState();
     const articles = useSelector(state => state.blogReducer.articles);
-    const categorieArticle = rayonsgen();
+    const categorieArticle = useRayonOptions();
     const formRef = useRef();
     const dispatch = useDispatch();
 

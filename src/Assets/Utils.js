@@ -23,3 +23,32 @@ export const numStr = (a, b) => {
   return c;
 };
 
+// active le modal de recherche rapide de produits dans la barre de navigation
+export const rapidsearchmodal = (clientsearchvalue, setRapidsearch) => {
+  if (clientsearchvalue != "") {
+    setRapidsearch(true);
+    document.body.style.overflow = "hidden";
+  } else {
+    setRapidsearch(false);
+    document.body.style.overflow = "auto";
+  }
+};
+
+/** 
+ * cherche et retourne une valeur depuis n'importe quelle table dans MySQL
+ * base : le nom de la table dans MySQL
+ * id : l'id de l'item
+ * request : le nom de la colonne dans la table où l'on cherche l'information
+ */
+export const searchinfo = (base, id, request) => {
+  const tempinfo =
+    !isEmpty(base) &&
+    typeof base == "object" &&
+    base.find((info) => info.id == id);
+  if (tempinfo && request in tempinfo) {
+    return tempinfo[request];
+  } else {
+    return "";
+  }
+};
+

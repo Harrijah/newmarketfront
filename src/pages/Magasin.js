@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Boban from "../Components/Boban";
 import Leftlateralcolumn from "../Components/Leftlateralcolumn";
 import Rightmaincontent from "../Components/Rightmaincontent";
-import { searchinfo } from "../Assets/Functions";
+import { searchinfo } from '../Assets/Utils';
 import Magasincol from "../Components/Magasincol";
 import { isEmpty } from "../Assets/Utils";
 import { getboutique } from "../action/boutique.action";
