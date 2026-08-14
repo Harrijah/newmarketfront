@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import useSelector from "react-redux";
+import {useSelector} from "react-redux";
 
 export function useRayonsWithProducts() {
-    const allProducts = useSelector(() => state.productReducer.products);
-    const rayonlist = useSelector(() => state.rayonReducer.rayon);
+    const allProducts = useSelector((state) => state.productReducer.products);
+    const rayonlist = useSelector((state) => state.rayonReducer.rayon);
 
     return useMemo(() => {
-        if (!allproductslist || !rayonlist) return [];
+        if (!allProducts || !rayonlist) return [];
 
         /** dédoublonnage des IDs des rayons auxquels sont rattachés des produits */
         const useRayonIds = new Set(allProducts.map((p) => p.rayon));
@@ -21,6 +21,6 @@ export function useRayonsWithProducts() {
         ));
 
         
-    }, [allproductslist, rayonlist]);
+    }, [allProducts, rayonlist]);
 
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { rayongen } from "../Assets/Functions";
+import {useRayonsWithProducts}  from "../hooks/useRayonsWithProducts";
 
 
 
 const Magasincol = ({setMonrayon}) => {
     // variables
-    const rayons = rayongen();
+    const rayons = useRayonsWithProducts();
 
     // fonctions
     const choisirunrayon = (id) => {

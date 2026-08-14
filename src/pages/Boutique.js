@@ -6,8 +6,9 @@ import Leftlateralcolumn from "../Components/Leftlateralcolumn";
 import Rightmaincontent from "../Components/Rightmaincontent";
 import { useParams } from "react-router-dom";
 import Productslister from "../Modules/Productslister";
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, rayongen, souscatgen } from "../Assets/Functions";
+import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, souscatgen } from "../Assets/Functions";
 import Boutiquecol from "../Components/Boutiquecol";
+import {useRayonsWithProducts} from "../hooks/useRayonsWithProducts";
 
 
 const Boutique = () => {
@@ -23,7 +24,7 @@ const Boutique = () => {
 
     // sélectionner un rayon
     const [rayonselect, setRayonselect] = useState(0);
-    const rayonlist = rayongen();
+    const rayonlist = useRayonsWithProducts();
 
     // obtenir une liste de catégories
     const [categorieselect, setCategorieselect] = useState(0);

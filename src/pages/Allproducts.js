@@ -6,8 +6,9 @@ import Rightmaincontent from "../Components/Rightmaincontent";
 import Boban from "../Components/Boban";
 import { useSelector } from "react-redux";
 import Productslister from "../Modules/Productslister";
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, marqueselect, rayongen, souscatgen } from "../Assets/Functions";
+import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, marqueselect, souscatgen } from "../Assets/Functions";
 import Boutiquecol from "../Components/Boutiquecol";
+import {useRayonsWithProducts} from "../hooks/useRayonsWithProducts";
 import { Otherfilters } from "../Components/Otherfilters";
 
 const Allproducts = () => {
@@ -23,7 +24,7 @@ const Allproducts = () => {
 
     // sélectionner un rayon
     const [rayonselect, setRayonselect] = useState(0);
-    const rayonlist = rayongen();
+    const rayonlist = useRayonsWithProducts();
 
     // obtenir une liste de catégories
     const [categorieselect, setCategorieselect] = useState(0);

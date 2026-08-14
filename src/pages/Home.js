@@ -5,13 +5,14 @@ import Slideshow from '../Modules/Slideshow';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from '../Assets/Utils';
 import { all } from 'axios';
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, rayonchoice, rayongen, searchinfo, searchresult, souscatgen } from '../Assets/Functions';
+import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, rayonchoice, searchinfo, searchresult, souscatgen } from '../Assets/Functions';
 import Productslister from '../Modules/Productslister';
 import { positionReducer } from '../reducers/position.reducer';
 import { showMyproduct } from '../action/showproduct.action';
 import { modalposition } from '../action/position.action';
 import { useNavigate } from 'react-router-dom';
 import Homepub from '../Modules/Homepub';
+import {useRayonsWithProducts} from '../hooks/useRayonsWithProducts';
 import Homeblog from '../Modules/Homeblog';
 
 
@@ -30,7 +31,7 @@ const Home = () => {
     // trouver le prix maximal
     const currentmaxprice = findmaxprice();
     const [maxprice, setMaxprice] = useState(currentmaxprice); 
-    const rays = rayongen();
+    const rays = useRayonsWithProducts();
     const [chooseothstr, setChooseothstr] = useState(0);
     const stores = magasinselect(chooseothstr);
     const mylink = useNavigate();
@@ -41,7 +42,7 @@ const Home = () => {
         mylink(id);
     }
     // afficher la liste de rayons avec des produits
-    const rayonlist = rayongen();
+    const rayonlist = useRayonsWithProducts();
 
     // sélectionner un rayon
     const rayonchoice = (e) => {

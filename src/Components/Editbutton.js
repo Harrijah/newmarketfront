@@ -16,9 +16,9 @@ export default function Editbutton({  userinfos, i, submitedit }) {
     }
 
     return (
-        {/** une ligne par item */}
+        //  une ligne par item 
         <li>
-            {/** nom de l'item (exemple : Nom */}
+            {/* nom de l'item (exemple : Nom ) */}
             <span className='item'><b> {userinfos[i][0]}</b> : </span>
             
             <span className="response">

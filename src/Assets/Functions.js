@@ -9,6 +9,7 @@ import {
   addtocart,
   removeformcart,
 } from "../action/session.action";
+import {searchinfo} from "./Utils"
 import Ajoutpanier from "../Components/Ajoutpanier";
 import Cartcontent from "../Components/Cartcontent";
 import { addittowish, deletemywish, updateWish } from "../action/whishlist.action";
@@ -25,12 +26,7 @@ import { addittowish, deletemywish, updateWish } from "../action/whishlist.actio
    ***********************************                               ***********************************
    *************************************************************************************************** */
 }
-// choisir un rayon
-export const rayonchoice = (e) => {
-  const [rayonselect, setRayonselect] = useState(0);
-  setRayonselect(e.target.value);
-  return rayonselect;
-};
+
 
 {
   /* *************************************************************************************************

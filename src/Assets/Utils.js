@@ -52,3 +52,10 @@ export const searchinfo = (base, id, request) => {
   }
 };
 
+/** choisir un rayon */
+export const rayonchoice = (e) => {
+  const [rayonselect, setRayonselect] = useState(0);
+  setRayonselect(e.target.value);
+  return rayonselect;
+};
+
