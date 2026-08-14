@@ -20,46 +20,6 @@ import { addittowish, deletemywish, updateWish } from "../action/whishlist.actio
    ***********************************                               ***********************************
    *************************************************************************************************** */
 }
-
-{
-  /* *************************************************************************************************
-   ***********************************                               ***********************************
-   *************************************************************************************************** */
-}
-
-
-{
-  /* *************************************************************************************************
-   ***********************************                               ***********************************
-   *************************************************************************************************** */
-}
-// retourne la liste des catégories en fonction du choix de rayon
-export const categorygen = (rayonselect) => {
-  const categorie = useSelector((state) => state.categorieReducer.categorie);
-  const [categorielist, setCategorielist] = useState([]);
-  useEffect(() => {
-    const listofcategorie =
-      !isEmpty(categorie) &&
-      categorie.map(
-        (categorie) =>
-          categorie.idrayon == rayonselect && (
-            <option key={categorie.id} value={categorie.id}>
-              {categorie.categorie}
-            </option>
-          )
-      );
-    if (listofcategorie != "") {
-      setCategorielist(listofcategorie);
-    }
-  }, [categorie, rayonselect]);
-  return categorielist;
-};
-
-{
-  /* *************************************************************************************************
-   ***********************************                               ***********************************
-   *************************************************************************************************** */
-}
 // retourne la liste des catégories où il y a des produits
 export const filteredcategorygen = (rayonselect) => {
   const allproductslist = useSelector((state) => state.productReducer.products);
