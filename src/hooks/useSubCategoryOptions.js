@@ -13,6 +13,7 @@ export const useSubCategoryOptions = (categorySelect) => {
 
         // filtrer les sous-catégories où il y a seulement des produits
         const usedProductsSubCat = new Set(allproducts.souscat);
+        
         // Tous les produits utilisés
         const xxx = allproducts.filter((x) => allproducts.x.has(usedProductsSubCat));
 
