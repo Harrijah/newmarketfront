@@ -15,7 +15,7 @@ export const useSubCategoryOptions = (categorySelect) => {
         const usedSubCarIds = new Set(allproducts.map((p) => p.souscategorie));
         
         // Filtrer la liste des Sous-catégories avec le Set où il y a des produits
-        const subCatsWithProducts = subCategoryList.filter((sc) => usedSubCarIds.has(sc.id));
+        const   = subCategoryList.filter((sc) => usedSubCarIds.has(sc.id));
 
         // la liste des sous-catégories qui sont enfants de la catégorie sélectionnée
         return subCatsWithProducts.map((subCategory, index) => subCategory.categorie == categorySelect && (
