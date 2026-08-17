@@ -6,9 +6,10 @@ import Leftlateralcolumn from "../Components/Leftlateralcolumn";
 import Rightmaincontent from "../Components/Rightmaincontent";
 import { useParams } from "react-router-dom";
 import Productslister from "../Modules/Productslister";
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, souscatgen } from "../Assets/Functions";
+import { filteredcategorygen, finalsouscatgen, findmaxprice, souscatgen } from "../Assets/Functions";
 import Boutiquecol from "../Components/Boutiquecol";
-import {useRayonsWithProducts} from "../hooks/useRayonsWithProducts";
+import { useRayonsWithProducts } from "../hooks/useRayonsWithProducts";
+import {useCategoryOptions} from '../hooks/useCategoryOptions';
 
 
 const Boutique = () => {

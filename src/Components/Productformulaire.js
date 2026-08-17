@@ -16,8 +16,9 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 //------------------------------ Autres -------------------------------------------
 import { isEmpty } from "../Assets/Utils";
-import { categorygen, souscatgen } from "../Assets/Functions";
+import { souscatgen } from "../Assets/Functions";
 import { useRayonOptions } from "../hooks/useRayonOptions";
+import { useCategoryOptions } from "../hooks/useCategoryOptions";
 
 
 
@@ -95,7 +96,7 @@ const Productformulaire = ({
   };
 
   //------------------------- Lister les Catégories
-  const categorielist = categorygen(rayonselect);
+  const categorielist = useCategoryOptions(rayonselect);
   const categorie = useSelector((state) => state.categorieReducer.categorie);
 
   //------------------------ Catégorie de produit sélectionné et choix de catégorie

@@ -5,7 +5,7 @@ import Slideshow from '../Modules/Slideshow';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from '../Assets/Utils';
 import { all } from 'axios';
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, rayonchoice, searchinfo, searchresult, souscatgen } from '../Assets/Functions';
+import { filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, rayonchoice, searchinfo, searchresult, souscatgen } from '../Assets/Functions';
 import Productslister from '../Modules/Productslister';
 import { positionReducer } from '../reducers/position.reducer';
 import { showMyproduct } from '../action/showproduct.action';
@@ -13,6 +13,7 @@ import { modalposition } from '../action/position.action';
 import { useNavigate } from 'react-router-dom';
 import Homepub from '../Modules/Homepub';
 import {useRayonsWithProducts} from '../hooks/useRayonsWithProducts';
+import {useCategoryOptions} from '../hooks/useCategoryOptions';
 import Homeblog from '../Modules/Homeblog';
 
 
@@ -54,7 +55,7 @@ const Home = () => {
 
 
     // obtenir une liste de catégories
-    const categorielist = categorygen(rayonselect);
+    const categorielist = useCategoryOptions(rayonselect);
     const filteredcategory = filteredcategorygen(rayonselect);
 
 

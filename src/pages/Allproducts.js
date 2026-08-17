@@ -6,9 +6,10 @@ import Rightmaincontent from "../Components/Rightmaincontent";
 import Boban from "../Components/Boban";
 import { useSelector } from "react-redux";
 import Productslister from "../Modules/Productslister";
-import { categorygen, filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, marqueselect, souscatgen } from "../Assets/Functions";
+import { filteredcategorygen, finalsouscatgen, findmaxprice, magasinselect, marqueselect, souscatgen } from "../Assets/Functions";
 import Boutiquecol from "../Components/Boutiquecol";
-import {useRayonsWithProducts} from "../hooks/useRayonsWithProducts";
+import { useRayonsWithProducts } from "../hooks/useRayonsWithProducts";
+import { useCategoryOptions } from '../hooks/useCategoryOptions';
 import { Otherfilters } from "../Components/Otherfilters";
 
 const Allproducts = () => {
@@ -28,7 +29,7 @@ const Allproducts = () => {
 
     // obtenir une liste de catégories
     const [categorieselect, setCategorieselect] = useState(0);
-    const categorielist = categorygen(rayonselect);
+    const categorielist = useCategoryOptions(rayonselect);
     const filteredcategory = filteredcategorygen(rayonselect);
 
     // obtenir une liste de sous-catégories
