@@ -11,19 +11,19 @@ export const useSubCategoryOptions = (categorySelect) => {
     const subCategoryOptions = useMemo(() => {
         if(!allproducts || !subCategoryList || typeof(subCategoryList) !== 'object') return [];
 
-        // filtrer les sous-catégories où il y a seulement des produits
-        const usedProductsSubCat = new Set(allproducts.souscat);
+        // créer un Set de sous-catégorie où il y a des produits
+        const usedSubCarIds = new Set(allproducts.map((p) => p.souscategorie));
         
-        // Tous les produits utilisés
-        const xxx = allproducts.filter((x) => allproducts.x.has(usedProductsSubCat));
+        // Filtrer la liste des Sous-catégories avec le Set où il y a des produits
+        const subCatsWithProducts = subCategoryList.filter((sc) => usedSubCarIds.has(sc.id));
 
-
-        return subCategoryList.map((categorySelect, index) => categorySelect == xxx.categorie && (
-            <option key={subCategoryList.id || index} value={subCategoryList.id} >
-                {xxx.souscat}
+        // la liste des sous-catégories qui sont enfant de la catégorie sélectionnée
+        return subCatsWithProducts.map((categorySelect, index) => subCatsWithProducts.categorie == subCatsWithProducts && (
+            <option key={subCatsWithProducts.id || index} value={subCatsWithProducts.id} >
+                {subCatsWithProducts.souscat}
             </option>
         ))
-    });
+    }, [categorySelect]);
 
     return subCategoryOptions;
 }
