@@ -1,16 +1,22 @@
-import {useState, useMemo} from "react"; 
+import { useMemo} from "react"; 
 import {useSelector} from "react-redux";
 
 export const useAllSubCategories = (categorySelect) => {
-    const allproducts = useSelector((state) => state.productReducer.products);
     const subCategoryList = useSelector((state) => state.souscatReducer.souscat);
 
-    const allSubCategories = useMemo((categorySelect) => {
-        if(!allproducts || !subCategoryList || typeof(subCategoryList) != 'objet') return [];
-        
+    const allSubCategories = useMemo(() => {
+        if(!subCategoryList || typeof(subCategoryList) != 'object') return [];
 
+        return subCategoryList
+            .filter((sc) => sc.category == categorySelect)
+            .map((sc) => (
+                <option key = {sc.id} value = {sc.id}>
+                    {sc.souscategorie}
+                </option>
+                )
+            )
         
-    }, [allproducts, subCategoryList, categorySelect]);
+    }, [ subCategoryList, categorySelect]);
 
     return allSubCategories;
 }
