@@ -1,7 +1,7 @@
 import {useMemo} from "react";
 import {useSelector} from "react-redux";
 
-export const useCategoryOptions = (rayonSelect) => {
+export const useAllCategories = (rayonSelect, rayonlist) => {
     const categoryList = useSelector((state) => state.categorieReducer.categorie);
 
     const categoryOption = useMemo(() => {
@@ -14,7 +14,7 @@ export const useCategoryOptions = (rayonSelect) => {
                 </option>
             ))
         );
-    }, [categoryList, rayonSelect]);
+    }, [categoryList, rayonSelect, rayonlist]);
 
     return categoryOption;
 }

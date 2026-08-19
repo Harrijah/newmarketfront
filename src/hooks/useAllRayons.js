@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 // retourne la liste de tous les rayons
-export function useRayonOptions() {
+export function useAllRayons() {
   const rayonlist = useSelector((state) => state.rayonReducer.rayon);
 
   const rayonOptions = useMemo(() => {

@@ -1,7 +1,7 @@
 import {useMemo} from "react";
 import {useSelector} from "react-redux";
 
-export const useCategoryWithProducts = (rayonSelect) => {
+export const useCategoryWithProducts = (rayonSelect, rayonlist) => {
     const allproducts = useSelector((state) => state.productReducer.products);
     const categoryList = useSelector((state) => state.categorieReducer.categorie);
 
@@ -23,7 +23,7 @@ export const useCategoryWithProducts = (rayonSelect) => {
                     {cat.categorie}
                 </option>
             ));
-    }, [allproducts, categoryList, rayonSelect]);
+    }, [allproducts, categoryList, rayonSelect, rayonlist]);
 
     return filteredCategory;
 

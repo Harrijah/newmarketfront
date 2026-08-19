@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 /* 
 retourne la liste des sous-catégories où il y a des produits, selon la catégorie sélectionnée 
 */
-export const useSubCategoryOptions = (categorySelect) => {
+export const useSubCategoryWithProducts = (categorySelect, categorielist, rayonselect, rayonlist) => {
     const allproducts = useSelector((state) => state.productReducer.products);
     const subCategoryList = useSelector((state) => state.souscatReducer.souscat);
 
@@ -18,12 +18,12 @@ export const useSubCategoryOptions = (categorySelect) => {
         const subCatsWithProducts = subCategoryList.filter((sc) => usedSubCarIds.has(sc.id));
 
         // la liste des sous-catégories qui sont enfants de la catégorie sélectionnée
-        return subCatsWithProducts.map((subCategory, index) => subCategory.categorie == categorySelect && (
+        return subCatsWithProducts.map((subCategory, index) => subCategory.idcategorie == categorySelect && (
             <option key={subCategory.id || index} value={subCategory.id} >
                 {subCategory.souscategorie}
             </option>
         ))
-    }, [categorySelect, allproducts, subCategoryList]);
+    }, [categorySelect, allproducts, subCategoryList, categorielist, rayonselect, rayonlist]);
 
     return subCategoryOptions;
 }
